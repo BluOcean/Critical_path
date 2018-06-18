@@ -32,6 +32,7 @@ typedef struct
 int main()
 {
 
+    //stack<int> s;
     ALGraph G;
     BuildALGraph(G);
     printALGraph(G);    //打印邻接表
@@ -41,6 +42,15 @@ int main()
     else{
         cout<<'\n'<<"拓扑排序失败"<<endl;
     }
+
+
+    if(CriticalPath(G)){
+        cout<<'\n'<<"关键路径输出成功"<<endl;
+    }
+    else{
+        cout<<'\n'<<"关键路径输出失败"<<endl;
+    }
+
 
     //cout<<'\n'<<TopologicalSort(G)<<endl;
     return 0;

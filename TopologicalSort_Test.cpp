@@ -227,6 +227,7 @@ void FindInDegree(ALGraph G,int indegree[])
 int TopologicalSort(ALGraph G)
 {
     int indegree[G.vexnum];
+    //int ve[G.vexnum];
     int i;
     int count;
     ArcNode *p;
@@ -237,28 +238,34 @@ int TopologicalSort(ALGraph G)
     }
     FindInDegree(G,indegree);
     //cout<<"度数是"<<indegree[0]<<' '<<indegree[1]<<endl;
-    stack<int> s;
+    //stack<int> s;
     cout<<"G.vexnum是"<<G.vexnum<<endl;
-    for(i=0; i<G.vexnum; ++i)
-        if(!indegree[i])
-            s.push(i);//找到入度为0的位置，入栈
+    for(i=0; i<G.vexnum; ++i){
+        if(!indegree[i])    s.push(i);//找到入度为0的位置，入栈
+    }
     count=0;
+
+    //初始化各顶点事件的最早发生时间ve
+    for(i=0;i<G.vexnum;++i){
+        ve[i]=0;
+    }
 
     while(!s.empty())
     {
-
-        i = s.top();
-        s.pop();//保存栈顶元素，并且栈顶元素出栈
-        cout << G.vertices[i].data<<" ";//输出拓扑序列
+        i = s.top();//保存栈顶元素
+        s.pop();    //删除栈顶元素
+        t.push(i);  //入t栈
+        //cout << G.vertices[i].data<<" ";//输出拓扑序列
         ++count;
-        for(p=G.vertices[i].firstarc; p; p=p->nextarc)
+        for(p=G.vertices[i].firstarc; p; p=p->nextarc)  //p是一条边
         {
             k=(p->adjvex)-1;
-            if(!(--indegree[k]))
-                s.push(k);
+            if(!(--indegree[k]))    s.push(k);
+            if(ve[i]+p->weight>ve[k])   ve[k]=ve[i]+p->weight;
+            cout<<"ve["<<k<<"]是"<<ve[k]<<endl;
         }
     }
-    cout<<"执行了一次拓扑排序"<<endl;
+    //cout<<"执行了一次拓扑排序"<<endl;
     if(count<G.vexnum)
     {
         return ERROR;
