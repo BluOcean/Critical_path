@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1528770552 source:f:\c++_project\critical_path\main.cpp
+	"TopologicalSort.h"
+	<string>
+	<queue>
+
+1528773523 source:f:\c++_project\critical_path\topologicalsort_test.cpp
+	"TopologicalSort.h"
+
+1528770656 f:\c++_project\critical_path\topologicalsort.h
+	<iostream>
+	<string>
+	<queue>
+	<stack>
+
