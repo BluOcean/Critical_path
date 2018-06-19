@@ -31,10 +31,10 @@ typedef struct
     int kind;
 } ALGraph;
 
-static stack<int> s;    //用于拓扑排序
-static stack<int> t;    //用于关键路径
+extern stack<int> s;    //用于拓扑排序
+extern stack<int> t;    //用于关键路径
 
-static int *ve=new int[MAX_VERTEX_NUM]; //各顶点的最早发生时间
+extern int ve[MAX_VERTEX_NUM]; //各顶点的最早发生时间
 
 void BuildALGraph(ALGraph &G);
 void printALGraph(ALGraph &G);
